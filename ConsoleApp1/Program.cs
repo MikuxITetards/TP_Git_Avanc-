@@ -4,22 +4,44 @@ namespace TPGITAVANCE
 {
     class Program
     {
+        private static string _UserChoice;
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenue sur le jeu Pierre Feuille Ciseau !!!!!");
 
-            int choice;
+            Console.WriteLine(ShowMainMenu());
+
+            bool choiceOK = true;
+
             do
             {
-                Console.Write(getMainMenu());
-                choice = Convert.ToInt32(Console.ReadLine());
-                string result = ComputeMainMenuChoice(choice);
-                Console.WriteLine(result);
-            } while (choice != 1 || choice != 2 || choice != 3);
-            Console.ReadLine();
+                _UserChoice = Console.ReadLine();
+
+                switch (_UserChoice)
+                {
+                    case "1":
+                        Console.Clear();
+                        //Execution du code pour jouer
+                        break;
+                    case "2":
+                        Console.Clear();
+                        //Execution du code pour changer de nombre de joueur                      
+                        break;
+                    case "3":
+                        //
+                        Console.Clear();
+                        Console.WriteLine("bye ! ");
+                        Console.ReadKey();
+                        choiceOK = false;
+                        break;
+                    default:
+                        Console.WriteLine("saisie invalide, veuillez recommencer");
+                        break;
+                }
+            } while (choiceOK);
         }
 
-        public static string getMainMenu()
+        public static string ShowMainMenu()
         {
             return " ****** Menu ******\n "
                     + " 1 – Jouer\n "
@@ -27,32 +49,7 @@ namespace TPGITAVANCE
                     + " 3 – Quitter\n "
                     + " Choice ? : ";
         }
-        public static string ComputeMainMenuChoice(int choice)
-        {
-            string result = " ";
-            switch (choice)
-            {
-                case 1:
-                    result += " –> Add Item ";
-                    break;
-                case 2:
-                    result += "–> Item update ";
-                    break;
-                case 3:
-                    result += "–> Item retrieved ";
-                    break;
-                case 4:
-                    result += "–> Item deleted ";
-                    break;
-                case 5:
-                    result += "–> Bye bye! ";
-                    break;
-                default:
-                    result += "Bad choice, try again ";
-                    break;
-            }
-            return result;
-        }
+       
 
     }
 }
